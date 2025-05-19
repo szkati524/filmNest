@@ -1,14 +1,10 @@
 package com.filmNest.example.filmNest.dto;
 
-import com.filmNest.example.filmNest.model.User;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import org.springframework.hateoas.RepresentationModel;
 
-public class MovieDTO {
+public class MovieDTO extends RepresentationModel<MovieDTO> {
     private Long id;
-    private String name;
+    private String userName;
     private String url;
     private String hashTag;
     private String description;
@@ -20,9 +16,9 @@ public class MovieDTO {
 
     }
 
-    public MovieDTO(Long id, String name, String url, String hashTag, String description, String userEmail, String review) {
+    public MovieDTO(Long id, String userName, String url, String hashTag, String description, String userEmail, String review) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.url = url;
         this.hashTag = hashTag;
         this.description = description;
@@ -38,12 +34,12 @@ public class MovieDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUrl() {

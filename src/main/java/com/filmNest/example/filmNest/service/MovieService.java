@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -28,7 +27,7 @@ public class MovieService {
                 .orElseThrow(() -> new RuntimeException("Użytkownik nie został znaleziony"));
 
                 Movie movie = new MovieBuilder()
-                        .setName(movieDTO.getName())
+                        .setName(movieDTO.getUserName())
                         .setUrl(movieDTO.getUrl())
                         .setHashTag(movieDTO.getHashTag())
                         .setDescription(movieDTO.getDescription())
@@ -46,6 +45,11 @@ public class MovieService {
                 .map(this::mapToDTO)
                 .toList();
     }
+    public MovieDTO getMovieById(Long id){
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Film nie został znaleziony"));
+        return mapToDTO(movie);
+    }
     private MovieDTO mapToDTO(Movie movie) {
         return new MovieDTO(
         movie.getId(),
@@ -57,4 +61,5 @@ public class MovieService {
         movie.getReview()
         );
     }
+
 }

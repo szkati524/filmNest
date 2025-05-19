@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
@@ -22,6 +25,8 @@ public class MovieController {
     @PostMapping
     public ResponseEntity<MovieDTO> addMovie(@RequestBody MovieDTO movieDTO){
     MovieDTO savedMovieDTO = movieService.addMovie(movieDTO);
+    savedMovieDTO.add(linkTo(methodOn(MovieController.class).getMovieById(savedMovieDTO.getId())).withSelfRel());
+    savedMovieDTO.add(linkTo(methodOn(MovieController.class).getAllMovies()).withRel("all-movies"));
     return ResponseEntity.status(HttpStatus.CREATED).body(savedMovieDTO);
 
 
@@ -29,7 +34,18 @@ public class MovieController {
     }
     @GetMapping
     public ResponseEntity<List<MovieDTO>> getAllMovies(){
+
     List<MovieDTO> movies = movieService.getAllMovies();
+    movies.forEach(movie -> {
+         movie.add(linkTo(methodOn(MovieController.class).movieService.getMovieById(movie.getId())).withSelfRel());
+    });
     return ResponseEntity.ok(movies);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieDTO> getMovieById(@PathVariable Long id){
+    MovieDTO movieDTO = movieService.getMovieById(id);
+    movieDTO.add(linkTo(methodOn(MovieController.class).getMovieById(id)).withSelfRel());
+    movieDTO.add(linkTo(methodOn(MovieController.class).getAllMovies()).withRel("all-movies"));
+    return ResponseEntity.ok(movieDTO);
     }
 }

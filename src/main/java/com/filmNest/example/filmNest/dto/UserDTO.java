@@ -1,23 +1,17 @@
-package com.filmNest.example.filmNest.model;
+package com.filmNest.example.filmNest.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import org.springframework.hateoas.RepresentationModel;
 
-@Entity
-@Table(name= "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO extends RepresentationModel {
     private Long id;
-
     private String userName;
     private String email;
 
-
-
-public User(){
-
-}
+    public UserDTO(Long id, String userName, String email) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

@@ -1,6 +1,7 @@
 package com.filmNest.example.filmNest.service;
 
 
+import com.filmNest.example.filmNest.dto.UserDTO;
 import com.filmNest.example.filmNest.model.User;
 import com.filmNest.example.filmNest.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -20,20 +21,36 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserDTO createUser(User user) {
+        if (user == null){
+            throw new IllegalArgumentException("użytkownik nie może być null");
+        }
+        User saved = userRepository.save(user);
+        return mapToDto(saved);
     }
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+
+
+    public Optional<UserDTO> getUserById(Long id) {
+        return userRepository.findById(id)
+                .map(this::mapToDto);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(this::mapToDto)
+                .toList();
     }
 @Transactional
     public void deleteUserByEmail(String email) {
+        if (email == null || email.isEmpty()){
+            throw new IllegalArgumentException("Email musi być uzupełniony");
+        }
         userRepository.deleteUserByEmail(email);
 
+    }
+    private UserDTO mapToDto(User user) {
+        return new UserDTO(user.getId(), user.getUserName(),user.getEmail());
     }
 }
