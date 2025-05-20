@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie,Long> {
 List<Movie> findAllByUser(User user);
+List<Movie> findByHashTags_Name(String name);
 }

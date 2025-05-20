@@ -2,6 +2,9 @@ package com.filmNest.example.filmNest.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "movies")
 public class Movie {
@@ -10,7 +13,13 @@ public class Movie {
     private Long id;
     private String name;
     private String url;
-    private String hashTag;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "movie_hashtags",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "hashtag_id")
+    )
+    private Set<HashTag> hashTags = new HashSet<>();
     @Column(length = 2000)
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -18,17 +27,14 @@ public class Movie {
     private User user;
     private String review;
 
-    public Movie(Long id, String name, String url, String hashTag, String description, User user, String review) {
+    public Movie(Long id, String name, String url, Set<HashTag> hashTags, String description, User user, String review) {
         this.id = id;
         this.name = name;
         this.url = url;
-        this.hashTag = hashTag;
+        this.hashTags = hashTags;
         this.description = description;
         this.user = user;
         this.review = review;
-    }
-    protected Movie(){
-
     }
 
     public Long getId() {
@@ -55,12 +61,12 @@ public class Movie {
         this.url = url;
     }
 
-    public String getHashTag() {
-        return hashTag;
+    public Set<HashTag> getHashTags() {
+        return hashTags;
     }
 
-    public void setHashTag(String hashTag) {
-        this.hashTag = hashTag;
+    public void setHashTags(Set<HashTag> hashTags) {
+        this.hashTags = hashTags;
     }
 
     public String getDescription() {

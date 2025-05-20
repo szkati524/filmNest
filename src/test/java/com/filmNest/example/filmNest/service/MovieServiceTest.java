@@ -1,6 +1,7 @@
 package com.filmNest.example.filmNest.service;
 
 import com.filmNest.example.filmNest.dto.MovieDTO;
+import com.filmNest.example.filmNest.model.HashTag;
 import com.filmNest.example.filmNest.model.Movie;
 import com.filmNest.example.filmNest.model.MovieBuilder;
 import com.filmNest.example.filmNest.model.User;
@@ -37,11 +38,13 @@ public class MovieServiceTest {
 
     @BeforeEach
     void setUp(){
+String hashtag1 = "sci-fi";
+List<String> hashtagList = new ArrayList<>();
         movieDTO = new MovieDTO(
                 null,
                 "Inception",
                 "http://trailer.com/inception",
-                "#sci-fi",
+                hashtagList,
                 "A mind-bending movie",
                 "test@example.com",
                 "Amazing!"
@@ -50,10 +53,11 @@ public class MovieServiceTest {
         user = new User();
         user.setId(1L);
         user.setEmail("test@example.com");
+        Set<HashTag> hashTags = new HashSet<>();
         movie = new MovieBuilder()
                 .setName(movieDTO.getUserName())
                 .setUrl(movieDTO.getUrl())
-                .setHashTag(movieDTO.getHashTag())
+                .setHashTags(hashTags)
                 .setDescription(movieDTO.getDescription())
                 .setReview(movieDTO.getReview())
                 .setUser(user)

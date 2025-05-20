@@ -1,29 +1,31 @@
 package com.filmNest.example.filmNest.dto;
 
+import com.filmNest.example.filmNest.model.HashTag;
 import org.springframework.hateoas.RepresentationModel;
+
+import java.util.List;
 
 public class MovieDTO extends RepresentationModel<MovieDTO> {
     private Long id;
     private String userName;
     private String url;
-    private String hashTag;
+    private List<String> hashTags;
     private String description;
     private String userEmail;
     private String review;
 
-
-    MovieDTO() {
-
-    }
-
-    public MovieDTO(Long id, String userName, String url, String hashTag, String description, String userEmail, String review) {
+    public MovieDTO(Long id, String userName, String url, List<String> hashTags, String description, String userEmail, String review) {
         this.id = id;
         this.userName = userName;
         this.url = url;
-        this.hashTag = hashTag;
+        this.hashTags = hashTags;
         this.description = description;
         this.userEmail = userEmail;
         this.review = review;
+    }
+
+    MovieDTO() {
+
     }
 
     public Long getId() {
@@ -50,12 +52,12 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
         this.url = url;
     }
 
-    public String getHashTag() {
-        return hashTag;
+    public List<String> getHashTag() {
+        return hashTags;
     }
 
-    public void setHashTag(String hashTag) {
-        this.hashTag = hashTag;
+    public void setHashTags(List<String> hashTags) {
+        this.hashTags = hashTags;
     }
 
     public String getDescription() {
@@ -82,3 +84,4 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
         this.review = review;
     }
 }
+

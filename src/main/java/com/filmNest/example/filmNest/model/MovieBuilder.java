@@ -1,10 +1,12 @@
 package com.filmNest.example.filmNest.model;
 
+import java.util.Set;
+
 public class MovieBuilder {
     private Long id;
     private String name;
     private String url;
-    private String hashTag;
+    private Set<HashTag> hashTags;
     private String description;
     private User user;
     private String review;
@@ -24,10 +26,6 @@ public class MovieBuilder {
         return this;
     }
 
-    public MovieBuilder setHashTag(String hashTag) {
-        this.hashTag = hashTag;
-        return this;
-    }
 
     public MovieBuilder setDescription(String description) {
         this.description = description;
@@ -45,6 +43,13 @@ public class MovieBuilder {
     }
 
     public Movie createMovie() {
-        return new Movie(id, name, url, hashTag, description, user, review);
+       Movie movie = new Movie(id,name,url,hashTags,description,user,review);
+       movie.setHashTags(this.hashTags);
+       return movie;
+    }
+
+    public MovieBuilder setHashTags(Set<HashTag> hashtags) {
+        this.hashTags = hashTags;
+        return this;
     }
 }
