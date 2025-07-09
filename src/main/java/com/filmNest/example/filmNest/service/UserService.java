@@ -47,7 +47,7 @@ public class UserService {
         if (email == null || email.isEmpty()){
             throw new IllegalArgumentException("Email musi być uzupełniony");
         }
-        userRepository.deleteUserByEmail(email);
+        userRepository.deleteByEmail(email);
 
     }
     private UserDTO mapToDto(User user) {

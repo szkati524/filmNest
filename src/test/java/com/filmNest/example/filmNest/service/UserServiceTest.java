@@ -100,13 +100,13 @@ public class UserServiceTest {
     @Test
     public void deleteUserByEmailIsNullShouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> userService.deleteUserByEmail(null));
-        verify(userRepository, never()).deleteUserByEmail(any());
+        verify(userRepository, never()).deleteByEmail(any());
     }
 
     @Test
     public void deleteUserByEmailIsEmptyShouldThrowException() {
         assertThrows(IllegalArgumentException.class, () -> userService.deleteUserByEmail(""));
-        verify(userRepository, never()).deleteUserByEmail(any());
+        verify(userRepository, never()).deleteByEmail(any());
     }
 
     @Test
@@ -149,11 +149,11 @@ public class UserServiceTest {
     @Test
     public void deleteUserByCorrectEmailTest() {
         String userEmail = "delete@example.com";
-        doNothing().when(userRepository).deleteUserByEmail(userEmail);
+        doNothing().when(userRepository).deleteByEmail(userEmail);
 
         userService.deleteUserByEmail(userEmail);
 
-        verify(userRepository, times(1)).deleteUserByEmail(userEmail);
+        verify(userRepository, times(1)).deleteByEmail(userEmail);
     }
 }
 

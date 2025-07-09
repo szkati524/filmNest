@@ -36,6 +36,9 @@ public class Movie {
         this.user = user;
         this.review = review;
     }
+    public Movie(){
+
+    }
 
     public Long getId() {
         return id;

@@ -12,7 +12,7 @@ public class HashTag {
     private Long id;
 @Column(unique = true)
     private String name;
-@ManyToMany(mappedBy = "hashtags")
+@ManyToMany(mappedBy = "hashTags")
 private Set<Movie> movies = new HashSet<>();
 
 public HashTag(){

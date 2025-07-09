@@ -37,7 +37,7 @@ public class MovieController {
 
     List<MovieDTO> movies = movieService.getAllMovies();
     movies.forEach(movie -> {
-         movie.add(linkTo(methodOn(MovieController.class).movieService.getMovieById(movie.getId())).withSelfRel());
+         movie.add(linkTo(methodOn(MovieController.class).getMovieById(movie.getId())).withSelfRel());
     });
     return ResponseEntity.ok(movies);
     }
