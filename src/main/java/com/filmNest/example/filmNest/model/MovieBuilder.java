@@ -49,7 +49,7 @@ public class MovieBuilder {
     }
 
     public MovieBuilder setHashTags(Set<HashTag> hashtags) {
-        this.hashTags = hashTags;
+        this.hashTags = hashtags;
         return this;
     }
 }

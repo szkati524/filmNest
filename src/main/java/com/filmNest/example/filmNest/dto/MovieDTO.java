@@ -7,6 +7,7 @@ import java.util.List;
 
 public class MovieDTO extends RepresentationModel<MovieDTO> {
     private Long id;
+    private String name;
     private String userName;
     private String url;
     private List<String> hashTags;
@@ -14,8 +15,9 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
     private String userEmail;
     private String review;
 
-    public MovieDTO(Long id, String userName, String url, List<String> hashTags, String description, String userEmail, String review) {
+    public MovieDTO(Long id,String name, String userName, String url, List<String> hashTags, String description, String userEmail, String review) {
         this.id = id;
+        this.name = name;
         this.userName = userName;
         this.url = url;
         this.hashTags = hashTags;
@@ -26,6 +28,14 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
 
     MovieDTO() {
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -52,7 +62,7 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
         this.url = url;
     }
 
-    public List<String> getHashTag() {
+    public List<String> getHashTags() {
         return hashTags;
     }
 

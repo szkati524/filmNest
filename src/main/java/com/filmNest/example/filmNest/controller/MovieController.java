@@ -48,4 +48,17 @@ public class MovieController {
     movieDTO.add(linkTo(methodOn(MovieController.class).getAllMovies()).withRel("all-movies"));
     return ResponseEntity.ok(movieDTO);
     }
+    @GetMapping("/search")
+    public List<MovieDTO> searchMoviesByHashTags(@RequestParam List<String> tags){
+    return movieService.findMoviesByHashTags(tags);
+    }
+    @GetMapping("/searchByName")
+    public List<MovieDTO> searchMoviesByName(@RequestParam String name){
+    return movieService.findMovieByName(name);
+    }
+@DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable Long id){
+    movieService.deleteMovieById(id);
+    return ResponseEntity.noContent().build();
+}
 }

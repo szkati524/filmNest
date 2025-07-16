@@ -69,7 +69,12 @@ public class Movie {
     }
 
     public void setHashTags(Set<HashTag> hashTags) {
-        this.hashTags = hashTags;
+        if (hashTags==null){
+            this.hashTags = new HashSet<>();
+        } else {
+            this.hashTags = hashTags;
+        }
+
     }
 
     public String getDescription() {
@@ -95,4 +100,9 @@ public class Movie {
     public void setReview(String review) {
         this.review = review;
     }
+    public void addHashTag(HashTag tag) {
+        this.hashTags.add(tag);
+        tag.getMovies().add(this);
+    }
+
 }
