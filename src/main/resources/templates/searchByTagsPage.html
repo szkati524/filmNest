@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Znajdz po Hashtagu - FilmNest</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<nav>
+    <ul class="navbar">
+        <li><a th:href="@{/}">Strona główna</a></li>
+        <li><a th:href="@{/films}">Filmy</a></li>
+        <li><a th:href="@{/series}">Seriale</a></li>
+        <li><a th:href="@{/searchByTagsPage}">Znajdź po hashtagu</a></li>
+        <li><a th:href="@{/contact}">Kontakt</a></li>
+    </ul>
+</nav>
+<h1>Znajdź filmy lub seriale po hashtagach:</h1>
+<form th:action="@{/searchByTagsPage}" method="get">
+    <label for="tags">Wpisz hashtagi oddzielone przecinkami:</label><br>
+    <input type="text" id="tags" name="tags" placeholder="np.akcja,dramat"/><br><br>
+    <button type="submit">Szukaj</button>
+</form>
+
+<div th:if="${movies != null}">
+    <h2>Wyniki wyszukiwania</h2>
+    <ul>
+        <li th:each="movie : ${movies}">
+            <strong th:text="${movie.name}">Tytuł</strong><br/>
+            <span><strong>Hashtagi:</strong>
+                <span th:each="tag : ${movie.hashTags}" th:text="'#' + ${tag} + ' '"></span>
+            </span><br/>
+            <a th:href="${movie.url}" th:text="${movie.url}">Link</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

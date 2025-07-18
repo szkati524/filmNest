@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontakt - FilmNest</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<nav>
+    <ul class="navbar">
+        <li><a th:href="@{/}">Strona główna</a> </li>
+        <li><a th:href="@{/films}">Filmy</a></li>
+        <li><a th:href="@{/series}">Seriale</a></li>
+        <li><a th:href="@{/searchByTagsPage}">Znajdź po hashtagu</a></li>
+        <li><a th:href="@{/contact}">Kontakt</a></li>
+    </ul>
+</nav>
+<h1>Kontakt:</h1>
+<p>Witaj! To jest mój pierwszy projekt stworzony przy użyciu Spring Boot i Thymeleaf. </p>
+<h2>Dane kontaktowe (fikcyjne):</h2>
+<p>
+    FilmNest Inc.<br/>
+    Ul. Przykładowa 123<br/>
+    00-001 Warszawa<br/>
+    Polska<br/>
+    Email: kontakt@filmnest.fake<br/>
+    Telefon: +48 123 456 789
+</p>
+
+<p><em>Uwaga: podane dane są fikcyjne i służą wyłącznie do celów demonstracyjnych.</em></p>
+</body>
+</html>

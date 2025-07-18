@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Filmy - FilmNest</title>
-    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Seriale - FilmNest</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
 <nav>
@@ -15,27 +15,29 @@
         <li><a th:href="@{/contact}">Kontakt</a></li>
     </ul>
 </nav>
-<h1>Lista wszystkich filmów:</h1>
+<h1>Lista wszystkich Seriali:</h1>
 
-<div th:if="${movies != null}">
+<div th:if="${seriesList != null}">
     <ul>
-        <li th:each="movie : ${movies}">
-            <h2 th:text="${movie.name}">Tytuł filmu</h2>
+        <li th:each="series : ${seriesList}">
+            <h2 th:text="${series.name}">Tytuł serialu</h2>
 
             <p><strong>Link:</strong>
-                <a th:href="${movie.url}" th:text="${movie.url}">Zobacz</a>
+                <a th:href="${series.url}" th:text="${series.url}">Zobacz</a>
             </p>
 
             <p><strong>Dodane przez:</strong>
-                <span th:text="${movie.userName}">Użytkownik</span>
+                <span th:text="${series.userName}">Użytkownik</span>
             </p>
 
             <p><strong>HashTagi:</strong>
-                <span th:each="tag : ${movie.hashTags}"
+                <span th:each="tag : ${series.hashTags}"
                       th:text="'#' + ${tag} + ' '"></span>
             </p>
         </li>
     </ul>
 </div>
+
+
 </body>
 </html>
