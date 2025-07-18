@@ -1,0 +1,35 @@
+body{
+background-color:gray;
+padding:30px;
+}
+h1{
+color:yellow;
+}
+form input {
+padding:8px;
+margin-right:10px;
+}
+.navbar{
+list-style:none;
+margin: 0;
+padding: 0;
+background-color:gray;
+display:flex;
+justify-content:space-around;
+align-items:center;
+width:100%;
+}
+.navbar li{
+display inline;
+}
+.navbar li a{
+display:block;
+padding:1rem;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+.navbar li a:hover{
+background-color:lightgray;
+border-radius:5px;
+}

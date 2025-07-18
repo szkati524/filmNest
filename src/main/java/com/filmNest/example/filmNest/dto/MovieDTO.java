@@ -1,6 +1,8 @@
 package com.filmNest.example.filmNest.dto;
 
+import com.filmNest.example.filmNest.Enums.MovieType;
 import com.filmNest.example.filmNest.model.HashTag;
+import com.filmNest.example.filmNest.model.Movie;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.util.List;
@@ -14,8 +16,9 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
     private String description;
     private String userEmail;
     private String review;
+    private MovieType movieType;
 
-    public MovieDTO(Long id,String name, String userName, String url, List<String> hashTags, String description, String userEmail, String review) {
+    public MovieDTO(Long id, String name, String userName, String url, List<String> hashTags, String description, String userEmail, String review, MovieType movieType) {
         this.id = id;
         this.name = name;
         this.userName = userName;
@@ -24,6 +27,7 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
         this.description = description;
         this.userEmail = userEmail;
         this.review = review;
+        this.movieType = movieType;
     }
 
     MovieDTO() {
@@ -93,5 +97,14 @@ public class MovieDTO extends RepresentationModel<MovieDTO> {
     public void setReview(String review) {
         this.review = review;
     }
+
+    public MovieType getMovieType() {
+        return movieType;
+    }
+
+    public void setMovieType(MovieType movieType) {
+        this.movieType = movieType;
+    }
 }
+
 

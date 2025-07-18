@@ -1,5 +1,7 @@
 package com.filmNest.example.filmNest.model;
 
+import com.filmNest.example.filmNest.Enums.MovieType;
+
 import java.util.Set;
 
 public class MovieBuilder {
@@ -10,6 +12,7 @@ public class MovieBuilder {
     private String description;
     private User user;
     private String review;
+    private MovieType movieType;
 
     public MovieBuilder setId(Long id) {
         this.id = id;
@@ -41,12 +44,18 @@ public class MovieBuilder {
         this.review = review;
         return this;
     }
-
+    public MovieBuilder setMovieType(MovieType movieType) {
+        this.movieType = movieType;
+        return this;
+    }
     public Movie createMovie() {
-       Movie movie = new Movie(id,name,url,hashTags,description,user,review);
+       Movie movie = new Movie(id,name,url,hashTags,description,user,review,movieType);
        movie.setHashTags(this.hashTags);
+       movie.setMovieType(movieType);
        return movie;
     }
+
+
 
     public MovieBuilder setHashTags(Set<HashTag> hashtags) {
         this.hashTags = hashtags;

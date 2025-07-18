@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmy - FilmNest</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+
+<ul class="navbar">
+    <li><a href="/">Strona główna</a></li>
+    <li><a href="/films">Filmy</a></li>
+    <li><a href="/series">Seriale</a></li>
+    <li><a href="/searchByHashTag">Znajdź po hashtagu</a></li>
+    <li><a href="/about">O nas</a></li>
+</ul>
+<h1>Lista wszystkich filmów:</h1>
+<ul>
+    <li th:each="movie : ${movies}">
+        <strong th:text="{$movie.name}">Tytuł</strong>
+        <span th:text="${movie.description}">Opis</span> (dodany przez <i th:text="${movie.userName}">użytkownik</i>)
+    </li>
+</ul>
+</body>
+</html>

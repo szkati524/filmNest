@@ -1,5 +1,6 @@
 package com.filmNest.example.filmNest.model;
 
+import com.filmNest.example.filmNest.Enums.MovieType;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -26,8 +27,10 @@ public class Movie {
     @JoinColumn(name = "user_id")
     private User user;
     private String review;
+    @Enumerated(EnumType.STRING)
+     private MovieType movieType;
 
-    public Movie(Long id, String name, String url, Set<HashTag> hashTags, String description, User user, String review) {
+    public Movie(Long id, String name, String url, Set<HashTag> hashTags, String description, User user, String review,MovieType movieType) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -35,6 +38,7 @@ public class Movie {
         this.description = description;
         this.user = user;
         this.review = review;
+        this.movieType = movieType;
     }
     public Movie(){
 
@@ -97,9 +101,19 @@ public class Movie {
         return review;
     }
 
+
     public void setReview(String review) {
         this.review = review;
     }
+
+    public MovieType getMovieType() {
+        return movieType;
+    }
+
+    public void setMovieType(MovieType movieType) {
+        this.movieType = movieType;
+    }
+
     public void addHashTag(HashTag tag) {
         this.hashTags.add(tag);
         tag.getMovies().add(this);

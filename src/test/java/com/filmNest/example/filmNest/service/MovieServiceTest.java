@@ -1,5 +1,6 @@
 package com.filmNest.example.filmNest.service;
 
+import com.filmNest.example.filmNest.Enums.MovieType;
 import com.filmNest.example.filmNest.dto.MovieDTO;
 import com.filmNest.example.filmNest.model.HashTag;
 import com.filmNest.example.filmNest.model.Movie;
@@ -43,11 +44,13 @@ List<String> hashtagList = new ArrayList<>();
         movieDTO = new MovieDTO(
                 null,
                 "Inception",
+                "TestUser",
                 "http://trailer.com/inception",
                 hashtagList,
                 "A mind-bending movie",
                 "test@example.com",
-                "Amazing!"
+                "Amazing!",
+                MovieType.FILM
         );
 
         user = new User();

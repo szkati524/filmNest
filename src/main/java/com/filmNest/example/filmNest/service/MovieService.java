@@ -50,6 +50,7 @@ public class MovieService {
                 .setDescription(movieDTO.getDescription())
                 .setReview(movieDTO.getReview())
                 .setUser(user)
+                .setMovieType(movieDTO.getMovieType())
                 .createMovie();
 
         for (HashTag tag : hashtags) {
@@ -92,7 +93,8 @@ public class MovieService {
                 hashtags,
                 movie.getDescription(),
                 movie.getUser().getEmail(),
-                movie.getReview()
+                movie.getReview(),
+                movie.getMovieType()
         );
     }
 
