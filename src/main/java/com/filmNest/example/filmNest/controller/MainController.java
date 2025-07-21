@@ -64,6 +64,10 @@ public class MainController {
         public String contactPage(Model model){
         return "contact";
         }
+        @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+        }
     }
 
 

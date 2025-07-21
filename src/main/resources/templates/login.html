@@ -14,23 +14,43 @@
     <li><a th:href="@{/series}">Seriale</a></li>
     <li><a th:href="@{/searchByTagsPage}">Znajdź po hashtagu</a></li>
     <li><a th:href="@{/contact}">Kontakt</a></li>
+
+
+    <li th:if="${#authorization.expression('isAuthenticated()')}">
+      <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">
+          Wyloguj się
+        </button>
+      </form>
+    </li>
+
+
+    <li th:unless="${#authorization.expression('isAuthenticated()')}">
+      <a th:href="@{/login}">Zaloguj się</a>
+    </li>
   </ul>
 </nav>
+
 <div class="login-container">
   <h2>Zaloguj się</h2>
   <form th:action="@{/login}" method="post">
     <label for="username">Nazwa użytkownika:</label><br>
     <input type="text" id="username" name="username" required><br><br>
-    <label for="password">Hasło:</label>
-    <input type="text" id="password" name="password" required><br><br>
+
+    <label for="password">Hasło:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
     <button type="submit">Zaloguj się</button>
   </form>
+
   <div th:if="${param.error}">
     <p style="color:red;">Nieprawidłowa nazwa użytkownika lub hasło.</p>
   </div>
+
   <div th:if="${param.logout}">
     <p style="color:green;">Zostałeś wylogowany</p>
   </div>
 </div>
+
 </body>
 </html>
