@@ -14,6 +14,12 @@
     <li><a th:href="@{/series}">Seriale</a></li>
     <li><a th:href="@{/searchByTagsPage}">Znajdź po hashtagu</a></li>
     <li><a th:href="@{/contact}">Kontakt</a></li>
+    <li th:if="${#authorization.expression('isAuthenticated()')}">
+      <a th:href="@{/myprofile}" title="moj profil" style="margin-right:10px">
+        <img src="/images/user.jpg" alt="profil" style="width:24px;, height:24px;,vertical-align:middle;">
+
+      </a>
+    </li>
 
 
     <li th:if="${#authorization.expression('isAuthenticated()')}">
